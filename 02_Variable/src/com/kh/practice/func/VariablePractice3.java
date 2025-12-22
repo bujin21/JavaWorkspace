@@ -6,12 +6,13 @@ public class VariablePractice3 {
 	public void practice3() {
 		Scanner sc = new Scanner(System.in);
 		
-		System.out.print("∞°∑Œ : ");
+		System.out.print("Í∞ÄÎ°ú : ");
 		double width = sc.nextDouble();
-		System.out.print("ºº∑Œ : ");
+		
+		System.out.print("ÏÑ∏Î°ú : ");
 		double height = sc.nextDouble();
 		
-		System.out.println("∏È¿˚ : " + width * height);
-		System.out.println("µ—∑° : " + (width + height)*2 );
+		System.out.println("Î©¥Ï†Å : "+ width * height);
+		System.out.println("ÎëòÎ†à : "+ (width + height) * 2);// sysout + ctrl +space
 	}
 }

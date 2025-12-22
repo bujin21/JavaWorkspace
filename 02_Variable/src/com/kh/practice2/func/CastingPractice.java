@@ -6,18 +6,18 @@ public class CastingPractice {
 	public void Practice1() {
 		Scanner sc = new Scanner(System.in);
 		
-		System.out.print("±¹¾î : ");
-		double korean = sc.nextDouble();
+		System.out.print("êµ­ : ");
+		double kor = sc.nextDouble();
 		
-		System.out.print("¿µ¾î : ");
-		double english = sc.nextDouble();
+		System.out.print("ì˜ : ");
+		double eng = sc.nextDouble();
 		
-		System.out.print("¼öÇĞ : ");
+		System.out.print("ìˆ˜ : ");
 		double math = sc.nextDouble();
 		
-		int total = (int)(korean + english + math);
-		int avg = total / 3 ; 
-		System.out.println("ÃÑÁ¡ : " + total);		
-		System.out.println("Æò±Õ : " + avg);
+		int total = (int)(kor + eng + math);
+		int avg = total / 3;
+		System.out.println("ì´ì  : " + total);
+		System.out.println("í‰ê·  : " + avg);
 	}
 }

@@ -4,9 +4,9 @@ import java.util.Date;
 
 public class FristMyObject {
 	
-	//ÀÚ¹Ù´Â ½ÇÇàÇÏ±â À§ÇØ ¹İµå½Ã main¸Ş¼­µå°¡ Á¸ÀçÇØ¾ß ÇÑ´Ù.
+	//ìë°”ëŠ” ì‹¤í–‰í•˜ê¸° ìœ„í•´ ë°˜ë“œì‹œ mainë©”ì„œë“œê°€ ì¡´ì¬í•´ì•¼ í•œë‹¤.
 	public static void main(String[] args) {
-		System.out.println("¾È³ç");
+		System.out.println("ì•ˆë…•");
 		
 		System.out.println(new Date());
 	}

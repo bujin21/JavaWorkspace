@@ -6,18 +6,18 @@ public class VariablePractice1 {
 	public void practice1(){
 		Scanner sc = new Scanner(System.in);
 		
-		System.out.print("ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä : ");
+		System.out.print("ì´ë¦„ì„ ì…ë ¥í•˜ì„¸ìš” : ");
 		String name = sc.next();
 		
-		System.out.print("¼ºº°À» ÀÔ·ÂÇÏ¼¼¿ä(³²/¿©) : ");
+		System.out.print("ì„±ë³„ì„ ì…ë ¥í•˜ì„¸ìš”(ë‚¨/ì—¬) : ");
 		char gender = sc.next().charAt(0);
 		
-		System.out.print("³ªÀÌ¸¦ ÀÔ·ÂÇÏ¼¼¿ä : ");
+		System.out.print("ë‚˜ì´ë¥¼ ì…ë ¥í•˜ì„¸ìš” : ");
 		int age = sc.nextInt();
 		
-		System.out.print("Å°¸¦ ÀÔ·ÂÇÏ¼¼¿ä(cm) : ");
+		System.out.print("í‚¤ë¥¼ ì…ë ¥í•˜ì„¸ìš”(cm) : ");
 		double height = sc.nextDouble();
 		
-		System.out.println("Å° " + height+"cmÀÎ "+ age+"»ì "+ gender+"ÀÚ " + name+"´Ô " + "¹İ°©½À´Ï´Ù.^^"  );
+		System.out.println("í‚¤ " + height+"cmì¸ "+ age+"ì‚´ "+ gender+"ì " + name+"ë‹˜ " + "ë°˜ê°‘ìŠµë‹ˆë‹¤.^^"  );
 	}
 }

@@ -6,14 +6,11 @@ public class VariablePractice4 {
 	public void practice4() {
 		Scanner sc = new Scanner(System.in);
 		
-		System.out.print("¹®ÀÚ¿­À» ÀÔ·ÂÇÏ¼¼¿ä : ");
-		String str = sc.next();
-		char ch1 = str.charAt(0);
-		char ch2 = str.charAt(1);
-		char ch3 = str.charAt(2);
+		System.out.print("ë¬¸ìì—´ì„ ì…ë ¥ : ");
+		String str = sc.next(); // apple
 		
-		System.out.println("Ã¹ ¹øÂ° ¹®ÀÚ : "+ ch1);
-		System.out.println("µÎ ¹øÂ° ¹®ÀÚ : "+ ch2);
-		System.out.println("¼¼ ¹øÂ° ¹®ÀÚ : "+ ch3);
+		System.out.println("ì²« ë²ˆì§¸ ë¬¸ì : "+str.charAt(0));
+		System.out.println("ë‘ ë²ˆì§¸ ë¬¸ì : "+str.charAt(1));
+		System.out.println("ì„¸ ë²ˆì§¸ ë¬¸ì : "+str.charAt(2));
 	}
 }
