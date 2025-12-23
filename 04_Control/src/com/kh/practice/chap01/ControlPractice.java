@@ -222,21 +222,21 @@ public class ControlPractice {
 		 
 		 double BMI = weight / (heigth*heigth);
 		 
-		 if(BMI >= 18.5) {
-			 System.out.println("BMI 지수 : " + BMI);
-			 System.out.println("정상체중");
-		 }else if(BMI > 23) {
-			 System.out.println("BMI 지수 : " + BMI);
-			 System.out.println("과체중체중");
-		 }else if(BMI > 25) {
-			 System.out.println("BMI 지수 : " + BMI);
-			 System.out.println("비만");
-		 }else if(BMI > 30) {
-			 System.out.println("BMI 지수 : " + BMI);
-			 System.out.println("고도비만");
-		 }else {
+		 if(BMI < 18.5) {
 			 System.out.println("BMI 지수 : " + BMI);
 			 System.out.println("저체중");
+		 }else if(BMI < 23) {
+			 System.out.println("BMI 지수 : " + BMI);
+			 System.out.println("정상체중");
+		 }else if(BMI < 25) {
+			 System.out.println("BMI 지수 : " + BMI);
+			 System.out.println("과체중체중");
+		 }else if(BMI < 30) {
+			 System.out.println("BMI 지수 : " + BMI);
+			 System.out.println("비만");
+		 }else {
+			 System.out.println("BMI 지수 : " + BMI);
+			 System.out.println("고도비만");
 		 }
 	 }
 	 public void practice8(){
@@ -245,42 +245,29 @@ public class ControlPractice {
 		 System.out.print("피연산자2 입력 : ");
 		 int num2 = sc.nextInt();
 		 System.out.print("연산자를 입력(+,-,*,/,%) : ");
-		 char operator = sc.next().charAt(0);
+		 char op = sc.next().charAt(0);
 		 
-		 switch(operator) {
+		 if(!(num1 > 0 && num2 > 0 && 
+				 (op == '+' || op == '-' || op == '*' || op == '/' || op == '%')
+				 )) {
+			 System.out.println("잘못입력하셨습니다. 프로그램을 종료합니다.");
+			 return;
+		 }
+		 
+		 switch(op) {
 		 case '+':
-			 if(num1 < 0 || num2 < 0) {
-				 System.out.println("양수를 입력해주세요.");
-				 break; 
-			 }
-			 System.out.println(num1 + " + " + num2 + " = " + (num1+num2));
+			 System.out.println(num1 + " + " + num2+" = "+ (num1+num2));
 			 break;
 		 case '-':
-			 if(num1 < 0 || num2 < 0) {
-				 System.out.println("양수를 입력해주세요.");
-				 break; 
-			 }
 			 System.out.println(num1 + " - " + num2 + " = " + (num1-num2));
 			 break;
 		 case '*':
-			 if(num1 < 0 || num2 < 0) {
-				 System.out.println("양수를 입력해주세요.");
-				 break; 
-			 }
 			 System.out.println(num1 + " * " + num2 + " = " + (num1*num2));
 			 break;
 		 case '/':
-			 if(num1 < 0 || num2 < 0) {
-				 System.out.println("양수를 입력해주세요.");
-				 break; 
-			 }
-			 System.out.println(num1 + " / " + num2 + " = " + (num1/(float)num2));
+			 System.out.println(num1 + " / " + num2 + " = " + (num1/(double)num2));
 			 break;
 		 case '%':
-			 if(num1 < 0 || num2 < 0) {
-				 System.out.println("양수를 입력해주세요.");
-				 break; 
-			 }
 			 System.out.println(num1 + " % " + num2 + " = " + (num1%num2));
 			 break;
 		 }
@@ -293,28 +280,34 @@ public class ControlPractice {
 		 System.out.print("기말 고사 점수 : ");
 		 int hScore = sc.nextInt();
 		 System.out.print("과제 점수 : ");
-		 int gwa = sc.nextInt();
+		 int report = sc.nextInt();
 		 System.out.print("출석 회수 : ");
-		 int count = sc.nextInt();
+		 int attend = sc.nextInt();
 		 
-		 double reMScore = mScore * 0.2;
-		 double reHScore = hScore * 0.3;
-		 double gwaS = gwa * 0.3;
-		 double countS = count*1.0;
 		 
-		 double result = reMScore + reHScore + gwaS + countS;
+		 double total = mScore * 0.2 + hScore * 0.3 + report * 0.3 + attend;
 		 
-		 if(result >= 70.0 && ((count/20.0)*100) > 70.0) {
-			 System.out.println("================= 결과 =================");
-			 System.out.println("중간 고사 점수(20) : "+(int)reMScore);
-			 System.out.println("기말 고사 점수(30) : "+(int)reHScore);
-			 System.out.println("과제 점수 (30) : "+(int)gwaS);
-			 System.out.println("출석 점수 (20) : "+(int)countS);
-			 System.out.println("총점 : "+ result);
-			 System.out.println("PASS");
-		 }else{
-			 System.out.println("Fail [출석 회수 부족 ("+count+"/20)]");
+		 if(attend <= 14) {
+			 System.out.println("Fail {출석 회수 부족 ("+attend+"/20)}");
 		 }
+		 
+		 System.out.println("총점 : "+ total);
+		 if(total < 70) {
+			 System.out.println("Fail");
+		 }else {
+			 System.out.println("PASS");
+		 }
+//		 if(total >= 70.0 && ((attend/20.0)*100) > 70.0) {
+//			 System.out.println("================= 결과 =================");
+//			 System.out.println("중간 고사 점수(20) : "+(int)(mScore * 0.2));
+//			 System.out.println("기말 고사 점수(30) : "+(int)(hScore * 0.3));
+//			 System.out.println("과제 점수 (30) : "+(int)(report * 0.3));
+//			 System.out.println("출석 점수 (20) : "+attend);
+//			 System.out.println("총점 : "+ total);
+//			 System.out.println("PASS");
+//		 }else{
+//			 System.out.println("Fail [출석 회수 부족 ("+attend+"/20)]");
+//		 }
 	 }
 	 public void practice10(){
 		 
@@ -329,8 +322,8 @@ public class ControlPractice {
 		 		+ "8. 계산기\r\n"
 		 		+ "9. P/F");
 		 System.out.print("선택 : ");
-		 int num = sc.nextInt();
-		 switch(num) {
+		 int menu = sc.nextInt();
+		 switch(menu) {
 		 case 1 : 
 			 practice1();
 			 break;
@@ -361,19 +354,40 @@ public class ControlPractice {
 		 }
 	 }
 	 public void practice11(){
-		 System.out.print("비밀번호 입력(1000~9999) : ");
-		 String pw = sc.next();
-		 if(pw.length() != 4) {
+		 System.out.print("비밀번호 입력 : (1000~9999) : ");
+		 int pwd = sc.nextInt();
+		 if(!( pwd >= 1000 && pwd <= 9999)) {
 			 System.out.println("자리수 안맞음");
 			 return;
 		 }
-		 if(pw.charAt(0) != pw.charAt(1) 
-				 && pw.charAt(1) != pw.charAt(2)
-				 && pw.charAt(2) != pw.charAt(3) 
-				 && pw.charAt(0) != pw.charAt(3)) {  
-			 System.out.println("성공");
+		 
+		 int first = pwd /1000; // 1234 / 1000 = 1(.234)
+		 int second = pwd /100 % 10; // 1234 / 100 => 12(.34) % 10 =>
+		 int third = pwd / 10 % 10;// 1234/10=> 123 % 10 => charAt(2)
+		 int fourth = pwd % 10;//1234 % 10 => 4
+		 
+		 if(first == second || first == third || first == fourth
+				 || second == third || second == fourth || third == fourth) {
+			 System.out.println("중복값 있음");
 		 }else {
-			 System.out.println("실패");
+			 System.out.println("생성 성공");
 		 }
+//		 System.out.print("비밀번호 입력(1000~9999) : ");
+//		 String pw = sc.next();
+		 
+//		 char a = pw.charAt(0);
+//		 char b = pw.charAt(1);
+//		 char c = pw.charAt(2);
+//		 char d = pw.charAt(3);
+//		 if(pw.length() != 4) {
+//			 System.out.println("자리수 안맞음");
+//			 return;
+//		 }
+//		 if(a == b || a == c|| a == d || b == c|| c == d) {  
+//		 	System.out.println("중복값 있음");
+//			
+//		 }else {
+//			System.out.println("성공"); 
+//		 }
 	 }
 }
