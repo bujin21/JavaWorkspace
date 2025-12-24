@@ -213,13 +213,14 @@ public class ArrayPractice {
 	                System.out.print((i+1)+"번째 문자열 : ");
 	                copy[i] = sc.nextLine();
 	            }
+	            origin = copy;	
 			}else if(ch == 'n' || ch == 'N') {
 				System.out.print("[");
-	            for(int i = 0; i < copy.length; i++) {
-	                if(i == copy.length - 1) {	// 마지막 인덱스인경우
-	                    System.out.print(copy[i]+"");
+	            for(int i = 0; i < origin.length; i++) {
+	                if(i == origin.length - 1) {	// 마지막 인덱스인경우
+	                    System.out.print(origin[i]+"");
 	                }else {
-	                    System.out.print(copy[i]+", ");
+	                    System.out.print(origin[i]+", ");
 	                }
 	            }
 	            System.out.print("]");
@@ -227,8 +228,7 @@ public class ArrayPractice {
 			}
 			
 		}
+
 		
 	}
-	
-	
 }
