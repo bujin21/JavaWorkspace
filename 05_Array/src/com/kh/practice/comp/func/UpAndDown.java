@@ -9,27 +9,43 @@ public class UpAndDown {
 		//몇 번 만에 맞췄는지 출력하세요.
 		
 		int random  = (int)(Math.random() * 100 + 1);
-		int cnt = 0;
+		int cnt = 1;
 		while(true) {
 			System.out.print("1~100 사이의 임의의 난수를 맞춰보세요 : ");
 			int num = sc.nextInt();
-			if(num <100 && num > 0 ) {
-				cnt++;
-				if(random > num) {
-					System.out.println("UP !");
-				}else if(random == num){
-					System.out.println("정답입니다 !!");
-					System.out.println(cnt+"회만에 맞추셨습니다.");
-					break;
-				}
-				else {
-					System.out.println("\nDOWN !");
-				}
-			}else {
+			if(random == num){
+				System.out.println("정답입니다 !!");
+				break;
+			}
+			
+			if(!(num <=100 && num > 0)) {
 				System.out.println("1~100 사이의 숫자를 입력해주세요.");
 				continue;
 			}
+			
+			if(random > num) {
+				System.out.println("UP !");
+			}else {
+				System.out.println("\nDOWN !");
+			}
+			cnt++;
+//			if(num <=100 && num > 0 ) {
+//				cnt++;
+//				if(random > num) {
+//					System.out.println("UP !");
+//				}else if(random == num){
+//					System.out.println("정답입니다 !!");
+//					break;
+//				}
+//				else {
+//					System.out.println("\nDOWN !");
+//				}
+//			}else {
+//				System.out.println("1~100 사이의 숫자를 입력해주세요.");
+//				continue;
+//			}
 
 		}//while
+		System.out.println(cnt+"회만에 맞추셨습니다.");
 	}
 }

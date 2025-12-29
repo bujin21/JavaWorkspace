@@ -5,6 +5,8 @@ public class Run {
 		A_Array aa = new A_Array();
 		//aa.method7();
 		B_ArrayCopy ba = new B_ArrayCopy();
-		ba.method5();
+		//ba.method5();
+		C_DimensionalArray cd = new C_DimensionalArray();
+		cd.method4();
 	}
 }
