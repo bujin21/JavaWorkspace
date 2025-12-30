@@ -12,6 +12,8 @@ public class SquareController {
 	}
 	
 	public double calcArea(double height, double width) {
+		s.setHeight(height);
+		s.setWidth(width);
 		return height * width;
 	}
 	public void paintColor(String color) {
