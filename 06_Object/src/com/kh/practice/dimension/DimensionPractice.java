@@ -5,12 +5,12 @@ import java.util.Scanner;
 public class DimensionPractice {
 	Scanner sc = new Scanner(System.in);
 	public void practice1(){
-		int[][] arr = new int[3][3];
+		String[][] arr = new String[3][3];
 		
 		for(int i=0; i<arr.length; i++) {
 			for(int j=0; j<arr[i].length; j++) {
-				arr[i][j] = j;
-				System.out.print("("+i+", "+j+")");
+				arr[i][j] = "("+i+", "+j+")";
+				System.out.print(arr[i][j]);
 			}
 			System.out.println();
 		}
@@ -40,63 +40,40 @@ public class DimensionPractice {
 	public void practice4(){
 		int[][] arr = new int[4][4];
         
-		// 1. 랜덤값 저장 (0~2행, 0~2열)
-		for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                arr[i][j] = (int)(Math.random() * 10 +1);
-            }
-        }
+		for(int i=0; i<arr.length-1; i++) {
+			for(int j=0; j<arr[i].length-1; j++) {
+				arr[i][j] = (int)(Math.random() *10 +1);
+				arr[i][3] += arr[i][j];
+				arr[3][j] += arr[i][j];
+				arr[3][3] += arr[3][j];
+				
+			}
+		}
 		
-		// 2. 행의 합 (0~2행, 3열)
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                arr[i][3] += arr[i][j];
-            }
-        }
-
-        // 3. 열의 합 (3행, 0~2열)
-        for (int j = 0; j < 3; j++) {
-            for (int i = 0; i < 3; i++) {
-                arr[3][j] += arr[i][j];
-            }
-        }
-
-        // 4. 마지막 값 (3행, 3열)
-        // 3행의 0~2열 합
-        for (int j = 0; j < 3; j++) {
-            arr[3][3] += arr[3][j];
-        }
-
-        // 0~2행의 3열 합
-        for (int i = 0; i < 3; i++) {
-            arr[3][3] += arr[i][3];
-        }
-
-        // 출력
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 4; j++) {
-                System.out.print(arr[i][j] + "\t");
-            }
-            System.out.println();
-        }
+		for(int i=0; i<arr.length; i++) {
+			for(int j=0; j<arr[i].length; j++) {
+				System.out.print(arr[i][j] + " ");
+			}
+			System.out.println();
+		}
 		
 	}
 	public void practice5(){
 		System.out.print("행 크기 : ");
-		int m = sc.nextInt();
+		int row = sc.nextInt();
 		System.out.print("열 크기 : ");
-		int n = sc.nextInt();
-		if(!(m > 0 && m<= 10 && n > 0 && n<= 10)) {
+		int col = sc.nextInt();
+		
+		if(!(row > 0 && row<= 10 && col > 0 && col<= 10)) {
 			System.out.println("반드시 1~10 사이의 정수를 입력해야 합니다.");
 			practice5();
 			return;
 		}
-		char ch = 'A';
-		char[][]arr = new char[m][n];
+		
+		char[][]arr = new char[row][col];
 		for(int i=0; i<arr.length; i++) {
 			for(int j=0; j<arr[i].length; j++) {
-				int random = (int)(Math.random() * 25);
-				arr[i][j] = (char)(ch + random);
+				arr[i][j] = (char)((int)(Math.random() * 26 + 65));
 				System.out.print(arr[i][j] + " ");
 			}
 			System.out.println();
