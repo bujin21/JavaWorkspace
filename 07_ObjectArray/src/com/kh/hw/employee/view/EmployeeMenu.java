@@ -17,13 +17,13 @@ public class EmployeeMenu {
 		// 9. 프로그램 종료 ==> “프로그램을 종료합니다.” 출력 후 프로그램 종료
 		// 메뉴 번호를 누르세요 :
 		// 번호를 잘못 입력했으면 잘못 입력했다는 안내가 뜸
-		
-		System.out.println("1. 사원 추가");
-		System.out.println("2. 사원 수정");
-		System.out.println("3. 사원 삭제");
-		System.out.println("4. 사원 출력");
-		System.out.println("9. 프로그램 종료");
 		while(true) {
+			System.out.println("1. 사원 추가");
+			System.out.println("2. 사원 수정");
+			System.out.println("3. 사원 삭제");
+			System.out.println("4. 사원 출력");
+			System.out.println("9. 프로그램 종료");
+		
 			System.out.print("메뉴 번호를 누르세요 : ");
 			int menuNum = sc.nextInt();
 			switch(menuNum) {
@@ -85,7 +85,6 @@ public class EmployeeMenu {
 				break;
 			}
 		}
-		return;
 		
 		
 		
@@ -111,22 +110,22 @@ public class EmployeeMenu {
 		System.out.println("3. 보너스 율");
 		System.out.println("9. 돌아가기");
 		while(true) {
-			System.out.println("메뉴 번호를 누르세요 :");
+			System.out.print("메뉴 번호를 누르세요 :");
 			int menuNum = sc.nextInt();
 			String[] menu = {"전화번호", "사원 연봉", "보너스 율"};
 			switch(menuNum) {
 			case 1:
-				System.out.print("수정할 "+menu[menuNum-1]);
+				System.out.print("수정할 "+menu[menuNum-1]+" : ");
 				String phone = sc.next();
 				ec.modify(phone);
 				break;
 			case 2:
-				System.out.print("수정할 "+menu[menuNum-1]);
+				System.out.print("수정할 "+menu[menuNum-1]+" : ");
 				int salary = sc.nextInt();
 				ec.modify(salary);
 				break;
 			case 3:
-				System.out.print("수정할 "+menu[menuNum-1]);
+				System.out.print("수정할 "+menu[menuNum-1]+" : ");
 				double bonus = sc.nextDouble();
 				ec.modify(bonus);
 				break;
@@ -137,6 +136,7 @@ public class EmployeeMenu {
 				System.out.println("잘못 입력하셨습니다.");
 				break;
 			}
+			break;
 		}
 		
 	}
@@ -158,6 +158,6 @@ public class EmployeeMenu {
 		
 	}
 	public void printEmp() {
-		ec.printEmployee();
+		System.out.println(ec.inform());
 	}
 }
