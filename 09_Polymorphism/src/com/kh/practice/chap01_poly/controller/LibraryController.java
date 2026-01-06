@@ -14,7 +14,7 @@ public class LibraryController {
 		bList[4] = new CookBook("최현석 날 따라해봐", "최현석", "소금책", true);
 	}
 	public void insertMember(Member mem) {
-		
+		this.mem = mem;
 	}
 	public Member myInfo() {
 		return mem;
@@ -23,10 +23,29 @@ public class LibraryController {
 		return bList;
 	}
 	public Book[] searchBook(String keyword) {
-		return bList;
+		Book[] bl = new Book[5];
+		int j = 0;
+		for(int i =0; i<bList.length; i++) {
+			String str = bList[i]+""; 
+			if(str.contains(keyword)) {
+				bl[j++] =  bList[i];
+			}
+			
+		}
+		return bl;
 	}
 	public int rentBook(int index) {
-		return index;
+		int result = 0;
+		int age;
+		if(bList[index] instanceof AniBook) {
+			age = ((AniBook)bList[index]).getAccessAge();
+			result = age < mem.getAge() ? 0 : 1;
+		}else if(bList[index] instanceof CookBook) {
+			Boolean b = ((CookBook)bList[index]).isCoupon();
+			if(b) mem.setCouponCount(mem.getCouponCount()+1);
+			result = b ? 2 : 0;
+		}
+		return result;
 	}
 	
 }

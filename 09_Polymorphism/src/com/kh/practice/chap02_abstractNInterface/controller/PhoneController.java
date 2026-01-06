@@ -11,7 +11,7 @@ public class PhoneController {
 		p[1] = new V40();
 		for(int i=0; i<p.length; i++) {
 			// 1안 downCasting
-					//sresult[i] = ((SmartPhone)p[i]).printformation();
+					//result[i] = ((SmartPhone)p[i]).printformation();
 			// 2안 upCasting
 			if(p[i] instanceof GalaxyNote9) {
 				result[i] = ((GalaxyNote9)p[i]).printformation();

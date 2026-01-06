@@ -34,7 +34,7 @@ public class LibraryMenu {
 			int menu = sc.nextInt();
 			switch(menu) {
 			case 1:
-				lc.myInfo();
+				System.out.println(lc.myInfo().toString()); 
 				break;
 			case 2:
 				selectAll();
@@ -66,13 +66,40 @@ public class LibraryMenu {
 				System.out.println(i +"번도서 : "+((CookBook)bList[i]).toString());
 			}else if(bList[i] instanceof AniBook) {
 				System.out.println(i +"번도서 : "+((AniBook)bList[i]).toString());
+				
 			}
 		}
 	}
 	public void searchBook() {
 		
+		System.out.print("검색할 제목 키워드 : ");
+		String ch = sc.next();
+		Book[] bList = lc.searchBook(ch);
+
+		for(int i=0 ; i<bList.length; i++) {	
+			if(bList[i] instanceof CookBook) {
+				System.out.println(((CookBook)bList[i]).toString());
+			}else if(bList[i] instanceof AniBook) {
+				System.out.println(((AniBook)bList[i]).toString());
+				
+			}
+		}
 	}
 	public void rentBook() {
+		selectAll();
+		
+		System.out.print("대여할 도서 번호 선택 : ");
+		int index = sc.nextInt();
+		
+		int result = lc.rentBook(index);
+		if(result == 0) {
+			System.out.println("성공적으로 대여되었습니다.");
+		}else if(result == 1) {
+			System.out.println("나이 제한으로 대여 불가능입니다.");
+		}else if(result ==2) {
+			System.out.println("성공적으로 대여되었습니다. 요리학원 쿠폰이 발급되었으니\r\n"
+					+ "마이페이지에서 확인하세요");
+		}
 		
 	}
 }
