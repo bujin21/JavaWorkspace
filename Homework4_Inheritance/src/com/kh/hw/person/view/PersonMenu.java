@@ -12,10 +12,10 @@ public class PersonMenu {
 
 	public void mainMenu() {
 		int[] person = pc.personCount();
-		System.out.println("학생은 최대 3명까지 저장할 수 있습니다.");
-		System.out.println("현재 저장된 학생은 "+person[0]+"명입니다.");
-		System.out.println("사원은 최대 10명까지 저장할 수 있습니다.");
-		System.out.println("현재 저장된 사원은 "+person[1]+"명입니다.");
+		System.out.println("학생은 최대 3명까지 저장할 수 있습니다. \r\n"
+				+"현재 저장된 학생은 "+person[0]+"명입니다. \r\n"
+				+ "사원은 최대 10명까지 저장할 수 있습니다. \r\n" 
+				+ "현재 저장된 사원은 "+person[1]+"명입니다. \r\n");
 		while(true) {
 			System.out.println("1. 학생 메뉴");
 			System.out.println("2. 사원 메뉴");
@@ -32,8 +32,10 @@ public class PersonMenu {
 			case 9 :
 				System.out.println("종료합니다.");
 				return;
+			default:
+				System.out.println("잘못 입력하셨습니다. 다시 입력해주세요.");
 			}
-			System.out.println("잘못 입력하셨습니다. 다시 입력해주세요.");
+			
 		}
 		
 		
@@ -41,8 +43,8 @@ public class PersonMenu {
 
 	public void studentMenu() {
 		while(true) {
-			int[] person = pc.personCount();
-			boolean check = person[0] < 3;
+			int cnt = pc.personCount()[0];
+			boolean check = cnt < 3;
 			System.out.println();
 			System.out.println("1. 학생 추가");
 			System.out.println("2. 학생 보기");
@@ -54,12 +56,11 @@ public class PersonMenu {
 			int menuNum = sc.nextInt();
 			switch(menuNum) {
 			case 1 :
-				if(check) {
-					insertStudent();
-					break;
-				}else {
+				if(cnt == 3) {
 					System.out.println("잘못 입력하셨습니다. 다시 입력해주세요.");
-					studentMenu();
+					continue;
+				}else {
+					insertStudent();
 					break;
 				}
 			case 2 :
@@ -113,52 +114,56 @@ public class PersonMenu {
 	}
 
 	public void insertStudent() {
-		System.out.println();
+		while(true) {
+			System.out.println();
 
-		System.out.print("학생 이름 : ");
-		String name = sc.next();
-		
-		System.out.print("학생 나이 : ");
-		int age = sc.nextInt();
-		
-		System.out.print("학생 키 : ");
-		double height = sc.nextDouble();
+			System.out.print("학생 이름 : ");
+			String name = sc.next();
+			
+			System.out.print("학생 나이 : ");
+			int age = sc.nextInt();
+			
+			System.out.print("학생 키 : ");
+			double height = sc.nextDouble();
 
-		System.out.print("학생 몸무게 : ");
-		double weight = sc.nextDouble();
-		
-		System.out.print("학생 학년 : ");
-		int grade = sc.nextInt();
-		
-		System.out.print("학생 전공 : ");
-		String major = sc.next();
-		pc.insertStudent(name, age, height, weight, grade, major);
-		
-		int[] person = pc.personCount();
-		if(person[0] < 3) {
-			System.out.print("그만하시려면 N(또는 n), 이어하시려면 아무 키나 누르세요 : ");
-			char ch = sc.next().toUpperCase().charAt(0);
-			if(ch != 'N') {
-				insertStudent();
+			System.out.print("학생 몸무게 : ");
+			double weight = sc.nextDouble();
+			
+			System.out.print("학생 학년 : ");
+			int grade = sc.nextInt();
+			
+			System.out.print("학생 전공 : ");
+			String major = sc.next();
+			pc.insertStudent(name, age, height, weight, grade, major);
+			
+			int cnt = pc.personCount()[0];
+			if(cnt < 3) {
+				System.out.print("그만하시려면 N(또는 n), 이어하시려면 아무 키나 누르세요 : ");
+				char ch = sc.next().toUpperCase().charAt(0);
+				if(ch == 'N') {
+					break;
+				}
+			}else {
+				System.out.println("학생을 담을 수 있는 공간이 꽉 찼기 때문에 학생 추가를 종료하고 학생메뉴로 돌아갑니다.");
+				break;
 			}
-		}else {
-			System.out.println("학생을 담을 수 있는 공간이 꽉 찼기 때문에 학생 추가를 종료하고 학생메뉴로 돌아갑니다.");
+
 		}
-		
+				
 	}
 
 	public void printStudent() {
 		Student[] std = pc.printStudent();
 		for(Student s : std) {
 			if(s != null ) {
-				System.out.println(s.toString());
+				System.out.println(s);
 			}
 		}
 	}
 
 	public void insertEmployee() {
 		System.out.println();
-		int[] person = pc.personCount();
+		int cnt = pc.personCount()[1];
 
 		System.out.print("사원 이름 : ");
 		String name = sc.next();
@@ -179,7 +184,7 @@ public class PersonMenu {
 		String dept = sc.next();
 		pc.insertEmployee(name, age, height, weight, salary, dept);
 			
-		if(person[0] < 10) {
+		if(cnt < 10) {
 			System.out.print("그만하시려면 N(또는 n), 이어하시려면 아무 키나 누르세요 : ");
 			char ch = sc.next().toUpperCase().charAt(0);
 			if(ch != 'N') {
@@ -194,7 +199,7 @@ public class PersonMenu {
 		Employee[] emp = pc.printEmployee();
 		for(Employee e : emp) {
 			if(e != null ) {
-				System.out.println(e.toString());
+				System.out.println(e);
 			}
 		}
 	}

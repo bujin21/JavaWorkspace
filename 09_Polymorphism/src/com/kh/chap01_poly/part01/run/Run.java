@@ -18,7 +18,7 @@ public class Run {
 		System.out.println("2. 자식타입 참조변수로 자식타입 객체 다루기");
 		Child1 c1 = new Child1();
 		c1.printParent();// super(부모)메서드 호출
-		c1.printChild1();// thhis에서 메서드 호출
+		c1.printChild1();// this에서 메서드 호출
 		
 		//3. 부모타입 참조변수로 자식타입 객체를 다루는 방법.
 		System.out.println("3. 부모타입 참조변수로 자식타입 객체 다루기");
