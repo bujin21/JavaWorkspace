@@ -6,13 +6,11 @@ public class FileController {
 	private FileDAO fd = new FileDAO();
 	
 	public boolean checkName(String file) {
-		boolean result = false;
-		result = fd.chekName(file);
-		return result;
+
+		return fd.chekName(file);
 	}
 	public void fileSave(String file, StringBuilder sb) {
-		String str = sb+"";
-		fd.fileSave(file, str);
+		fd.fileSave(file, sb.toString());
 	}
 	public StringBuilder fileOpen(String file) {
 		StringBuilder sb = new StringBuilder();
@@ -20,7 +18,6 @@ public class FileController {
 		return sb;
 	}
 	public void fileEdit(String file, StringBuilder sb) {
-		String s = sb+"";
-		fd.fileEdit(file, s);
+		fd.fileEdit(file, sb.toString());
 	}
 }

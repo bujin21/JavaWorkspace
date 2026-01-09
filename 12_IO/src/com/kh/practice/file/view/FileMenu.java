@@ -20,6 +20,7 @@ public class FileMenu {
 			System.out.println("9. 끝내기");
 			System.out.print("메뉴 번호 : ");
 			int menu = sc.nextInt();
+			sc.nextLine();
 			switch(menu) {
 			case 1 :
 				fileSave();
@@ -47,30 +48,31 @@ public class FileMenu {
 			System.out.print("내용 : ");
 			String str =sc.nextLine();
 			if(str.equals("ex끝it")) {
-				boolean result = false;
-				while(true) {
-					System.out.print("저장할 파일 명을 입력해주세요(ex. myFile.txt) : ");
-					String fn = sc.next();
-					result = fc.checkName(fn);
-					if(!result) {
-						fc.fileSave(fn, sb1);
-						break;	
-					}
-					
-					System.out.print("이미 존재하는 파일입니다. 덮어쓰시겠습니까? (y/n) : ");
-					char ch = sc.next().charAt(0);
-					if(ch == 'y') {
-						fc.fileSave(fn, sb1);
-					}else if(ch == 'n') {
-						continue;
-					}
-				}
-				
-				
+				break;
 			}else {
 				sb1.append(str +"\n");
 			}
 		}
+		boolean result = false;
+		while(true) {
+			System.out.print("저장할 파일 명을 입력해주세요(ex. myFile.txt) : ");
+			String fn = sc.next();
+			result = fc.checkName(fn);
+			if(!result) {
+				fc.fileSave(fn, sb1);
+				mainMenu();
+				break;	
+			}
+			
+			System.out.print("이미 존재하는 파일입니다. 덮어쓰시겠습니까? (y/n) : ");
+			char ch = sc.next().toUpperCase().charAt(0);
+			if(ch == 'Y') {
+				fc.fileSave(fn, sb1);
+			}else if(ch == 'N') {
+				continue;
+			}
+		}
+		
 		
 
 		// “ex끝it”를 입력할 때까지 사용자가 입력하게 하고 그 값들을 StringBuilder에 저장
@@ -88,9 +90,10 @@ public class FileMenu {
 		System.out.print("열 파일 명 : ");
 		String fn = sc.next();
 		boolean isFn =fc.checkName(fn);
+		
 		if(!(isFn)) {
 			System.out.println("없는 파일입니다");
-			mainMenu();
+			return;
 		}
 		sb = fc.fileOpen(fn);
 		
@@ -102,11 +105,19 @@ public class FileMenu {
 		String fn = sc.next();
 		if( !(fc.checkName(fn) )) {
 			System.out.println("없는 파일명입니다.");
+			return;
 		}
-		System.out.print("이어서 수정할 글 : ");
-		String str = sc.next();
-		sb.append(fc.fileOpen(fn));
-		sb.append(str);
-		fc.fileSave(fn, sb);
+		while(true) {
+			System.out.println("파일에 저장할 내용을 입력하세요.");
+			System.out.println("ex끝it 이라고 입력하면 종료됩니다.");
+			System.out.print("내용 : ");
+			String str =sc.nextLine();
+			if(str.equals("ex끝it")) {
+				break;
+			}else {
+				sb.append(str +"\n");
+			}
+		}
+		fc.fileEdit(fn, sb);
 	}
 }
