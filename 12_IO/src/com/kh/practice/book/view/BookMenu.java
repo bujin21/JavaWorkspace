@@ -24,6 +24,7 @@ public class BookMenu {
 					+ "9. 프로그램 끝내기");
 			System.out.print("메뉴 번호 : ");
 			int menu = sc.nextInt();
+			sc.nextLine();
 			switch(menu) {
 			case 1 :
 				fileSave();
@@ -43,7 +44,7 @@ public class BookMenu {
 	}
 	public void fileSave() {
 		System.out.print("도서명 : ");
-		String title = sc.next();
+		String title = sc.nextLine();
 		System.out.print("저자명 : ");
 		String author = sc.next();
 		System.out.print("도서 가격 : ");
@@ -54,20 +55,29 @@ public class BookMenu {
 		double discount  = sc.nextDouble();
 		
 		String[] sday = date.split("-");
-		int[] iday = null;
-		for(int i=0; i<sday.length; i++) {
-			iday[i] = Integer.parseInt(sday[i]);
-		}
-		Calendar cal = new GregorianCalendar(iday[0], iday[1], iday[2]);
+		
+		Calendar cal = Calendar.getInstance();
+		cal.set(Integer.parseInt(sday[0]),
+				Integer.parseInt(sday[1])-1,
+				Integer.parseInt(sday[2]));
+		
 		
 		for(int i=0; i<bArr.length+1; i++) {
 			if(bArr[i] == null){
 				bArr[i] = new Book(title, author, price, cal, discount);
+				break;
 			}
 		}
 		bc.fileSave(bArr);
+
 	}
 	public void fileRead() {
-		
+		Book[] bArr= bc.fileRead();
+		for(Book b : bArr) {
+			if(b != null) {
+				System.out.println(b);
+			}
+			
+		}
 	}
 }

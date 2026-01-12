@@ -10,17 +10,19 @@ public class BookController {
 	private BookDAO bd = new BookDAO();
 
 	public void makeFile() {
-		
-		try {
-			File f = new File("book.txt");
-			f.createNewFile();
-		} catch (IOException e) {
-			e.printStackTrace();
+		File f = new File("book.txt");
+		if(!f.exists()) {
+			
+				try {
+					f.createNewFile();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 		}
-//		boolean result = f.isFile();
 	}
 	public void fileSave(Book[] bArr) {
-		
+		bd.fileSave(bArr);
 	}
 	public Book[] fileRead() {
 		return bd.fileRead();

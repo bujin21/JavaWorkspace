@@ -1,5 +1,6 @@
 package com.kh.practice.book.model.dao;
 
+import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -17,8 +18,10 @@ public class BookDAO {
 
 		try(ObjectOutputStream oos = 
 				new ObjectOutputStream(new FileOutputStream("phone.txt"));){
-			for(Book brr : bArr) {
-				oos.writeObject(brr);
+			for(Book b : bArr) {
+				if(b !=null) {
+					oos.writeObject(b);
+				}
 			}
 			
 		} catch (FileNotFoundException e) {
@@ -32,13 +35,19 @@ public class BookDAO {
 	public Book[] fileRead() {
 		try(ObjectInputStream ois = 
 				new ObjectInputStream(new FileInputStream("book.txt"))){
-			bArr = (Book[])ois.readObject();
+			int index = 0;
+			while(true) {
+				Book b = (Book) ois.readObject();
+				bArr[index] = b;
+				index +=1;
+			}
 			
 		} catch (FileNotFoundException e) {
-			
+			e.printStackTrace();
+		} catch (EOFException e) { 
+			// 파일의 끝
 			e.printStackTrace();
 		} catch (IOException e) {
-			
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
