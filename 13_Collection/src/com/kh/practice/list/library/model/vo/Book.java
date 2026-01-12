@@ -1,5 +1,7 @@
 package com.kh.practice.list.library.model.vo;
 
+import com.kh.practice.list.music.model.vo.Music;
+
 public class Book implements Comparable<Book>{
 	private String title;
 	private String author;
@@ -52,17 +54,13 @@ public class Book implements Comparable<Book>{
 
 	@Override
 	public String toString() {
-		return "Book [title=" + title + ", author=" + author + ", category=" + category + ", price=" + price + "]";
-	}
-	
-	public boolean equals() {
-		return false;
+		return "("+title+"/"+author+"/"+category+"/"+price+")";
 	}
 
 	@Override
 	public int compareTo(Book o) {
-		
-		return 0;
+		return this.title.compareTo(o.title);
+
 	}
 	
 	

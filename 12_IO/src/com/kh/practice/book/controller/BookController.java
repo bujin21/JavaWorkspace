@@ -22,6 +22,7 @@ public class BookController {
 		}
 	}
 	public void fileSave(Book[] bArr) {
+		// 매개변수로 받은 bArr을 BookDAO(bd)의 fileSave()의 매개변수로 보냄
 		bd.fileSave(bArr);
 	}
 	public Book[] fileRead() {

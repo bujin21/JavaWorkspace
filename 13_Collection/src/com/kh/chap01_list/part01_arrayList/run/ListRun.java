@@ -80,7 +80,7 @@ public class ListRun {
 
 		System.out.println(list);
 		
-		// 2. add(indext, E e)
+		// 2. add(index, E e)
 		// 	- 리스트에 전달되는 index값 위치에 e를 추가하는 메서드
 		list.add(0, new Music("바다의 왕자", "박명수"));
 		// 중간에 값 추가시 알아서 기본값들을 뒤로 한 칸씩 땡겨주는 깊은복사가 내부적으로 발생한다.
@@ -100,7 +100,7 @@ public class ListRun {
 		//	 - 리스트에 초기화된 데이터 수를 반환하는 메서드
 		System.out.println("리스트에 담긴 데이터 수 : "+ list.size());
 		
-		// 6. get(int indext)
+		// 6. get(int index)
 		//	- 리스트에서 index위치의 값을 반환해주는 메서드
 		Music m = list.get(0);
 		System.out.println(m);

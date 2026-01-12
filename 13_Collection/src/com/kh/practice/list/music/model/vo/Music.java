@@ -1,6 +1,6 @@
 package com.kh.practice.list.music.model.vo;
 
-public class Music implements Comparable<Object>{
+public class Music implements Comparable<Music>{
 	private String title;
 	private String singer;
 	
@@ -32,16 +32,11 @@ public class Music implements Comparable<Object>{
 
 	@Override
 	public String toString() {
-		return singer + " - " + title;
+		return "Music [title=" + title + ", singer=" + singer + "]";
 	}
-	public boolean equals(Object obj) {
-		Music m = (Music)obj;
-		boolean b = this.getTitle() == m.getTitle();
-		return b;
-	}
-	public int compareTo(Object o) {
-		Music m = (Music)o;
-		return this.title.compareTo(m.title);
+	
+	public int compareTo(Music o) {
+		return ((Music)o).singer.compareTo(this.singer);
 	}
 
 	
