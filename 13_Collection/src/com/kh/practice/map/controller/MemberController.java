@@ -1,6 +1,7 @@
 package com.kh.practice.map.controller;
 
 import java.util.HashMap;
+import java.util.Set;
 import java.util.TreeMap;
 
 import com.kh.practice.map.model.vo.Member;
@@ -35,10 +36,19 @@ public class MemberController {
 		return false;
 	}
 	public void changeName(String id, String newName) {
-		
+		Member m = map.get(id);
+		m.setName(newName);
+		map.put(id, m);
 	}
 	public TreeMap sameName(String name) {
-		TreeMap tm = new TreeMap<String, Member>();
+		TreeMap<String, Member> tm = new TreeMap<>();
+		Set<String> set = map.keySet();
+		for(String key : set) {
+			if(map.get(key).getName().equals(name)) {
+				tm.put(key, map.get(key));
+			}
+			
+		}
 		return tm;
 	}
 }

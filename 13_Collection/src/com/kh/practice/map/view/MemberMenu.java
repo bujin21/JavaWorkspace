@@ -1,6 +1,9 @@
 package com.kh.practice.map.view;
 
 import java.util.Scanner;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 import com.kh.practice.map.controller.MemberController;
 import com.kh.practice.map.model.vo.Member;
@@ -9,7 +12,7 @@ public class MemberMenu {
 	private Scanner sc = new Scanner(System.in);
 	private MemberController mc = new MemberController();
 	
-	Member mem;
+	String id = "";
 	public void mainMenu() {
 		while(true) {
 			System.out.println("========== KH 사이트 ==========");
@@ -110,19 +113,45 @@ public class MemberMenu {
 		}
 	}
 	public void changePassword() {
+		
+	}
+	public void changeName() {
 //		아이디와 비밀번호를 받아 mc의 logIn()으로 넘겨 현재 저장되어 있는 이름을 받고
 //		사용자에게 현재 저장되어 있는 이름을 출력하여 보여줌.
 //		변경할 이름을 받아 mc의 chageName()로 id와 함께 넘기고
 //		“이름 변경에 성공하였습니다.” 출력
 //		만일 logIn()로부터 저장되어 있는 이름을 받지 못 했다면
 //		“이름 변경에 실패했습니다. 다시 입력해주세요” 출력 후 반복
-		
-	}
-	public void changeName() {
-		
+		while(true) {
+			System.out.print("아이디 : ");
+			String id = sc.next();
+			System.out.print("비밀번호 : ");
+			String password = sc.next();
+			String getName =mc.login(id, password);
+			
+			
+			if(getName != null) {
+				System.out.println("현재 저장되어있는 이름 : "+getName);
+				System.out.print("변경할 이름 : ");
+				String change = sc.next();
+				mc.changeName(id, change);
+				System.out.println("이름 변경에 성공하였습니다.");
+				break;
+			}else {
+				System.out.println("틀린 아이디 또는 비밀번호입니다. 다시 입력해주세요.");
+			}
+		}
 	}
 	public void sameName() {
-		
+		System.out.print("검색할 이름 : ");
+		String name = sc.next();
+		TreeMap<String, Member> ts = mc.sameName(name);
+		Set<String> set = ts.keySet();
+		for(String key : set) {
+			System.out.println(key);
+			System.out.println(ts.get(key));
+			
+		}
 	}
 	
 }
