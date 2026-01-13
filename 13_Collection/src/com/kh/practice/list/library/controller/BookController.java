@@ -9,7 +9,7 @@ import com.kh.practice.list.library.model.vo.Book;
 import com.kh.practice.list.music.model.vo.Music;
 
 public class BookController {
-	private List<Book> bookList = new ArrayList();
+	private List bookList = new ArrayList();
 
 	public BookController() {
 		// 초기 값 4개 추가 
@@ -36,7 +36,7 @@ public class BookController {
 		// 검색 결과 리스트를 담아줄 리스트(ArrayList searchList) 선언 및 생성
 		// 반복문을 통해 list의 책 중 책 명에 전달 받은 keyword가 포함되어있는 경우
 		// searchList에 해당 책 추가하고 searchList 반환
-		ArrayList searchList = null;
+		ArrayList searchList = new ArrayList();
 		for(Object o : bookList) {
 			Book b = (Book)o;
 			if(b.getTitle().contains(keyword)) {
@@ -52,7 +52,8 @@ public class BookController {
 		// 이 때 해당 인덱스 도서를 removeBook에 대입 후 removeBook 반환
 		Book removeBook = null;
 		
-		for(Book b : bookList) {
+		for(int i = 0; i<bookList.size(); i++) {
+			Book b = (Book) bookList.get(i);
 			if(b.getTitle().equals(title) && b.getAuthor().equals(author)) {
 				removeBook = b;
 				bookList.remove(b);

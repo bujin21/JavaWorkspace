@@ -22,6 +22,7 @@ public class BookMenu {
 			System.out.println("9. 종료"); // “프로그램을 종료합니다.” 출력 후 main()으로 리턴
 			System.out.print("메뉴 번호 선택 : ");
 			int menu = sc.nextInt();
+			sc.nextLine();
 			switch(menu) {
 			case 1:
 				insertBook();
@@ -55,31 +56,17 @@ public class BookMenu {
 		
 		System.out.println("도서명 : ");
 		String title = sc.nextLine();
+		
 		System.out.println("저자명 : ");
 		String author = sc.nextLine();
+		
 		System.out.println("장르(1. 인문 / 2. 과학 / 3. 외국어 / 4. 기타) : ");
 		int category = sc.nextInt();
+		String[] arr = {"인문", "과학", "외국어", "기타"};
 		System.out.println("가격 : ");
 		int price = sc.nextInt();
-		String cate = "";
-		switch(category) {
-		case 1 :
-			cate = "인문";
-			break;
-		case 2 :
-			cate = "자연과학";
-			break;
-		case 3 :
-			cate = "의료";
-			break;
-		case 4 :
-			cate = "기타";
-			break;
-		default :
-			System.out.println("장르번호를 잘못 입력하였습니다.");
-			return;
-		}
-		bc.insertBook(new Book(title, author, cate, price));
+		
+		bc.insertBook(new Book(title, author, arr[category-1], price));
 	}
 	public void selectList() {
 //		1. bc(BookController)의 selectList() 메소드를 호출 후
@@ -89,14 +76,16 @@ public class BookMenu {
 //		2_2. bookList가 "비어있지 않은 경우" --> 반복문을 통해 bookList 안의 Book 객체들 출력
 		System.out.println("===== 도서 전체 조회 =====");
 		ArrayList<Book> bookList = bc.selectList();
-		if(bookList == null) {
+		if(bookList.isEmpty()) {
 			System.out.println("존재하는 도서가 없습니다.");
-			return;
-		}
-		for(Book b : bookList) {
-			System.out.println(b);
 			
+		}else {
+			for(Book b : bookList) {
+				System.out.println(b);
+				
+			}
 		}
+		
 	}
 	public void searchBook() {
 //		1. 검색할 도서명 키워드로 입력 받기 (String keyword)
@@ -111,14 +100,16 @@ public class BookMenu {
 		
 		System.out.println("===== 도서 검색 =====");
 		System.out.println("검색 키워드 : ");
-		String keyword = sc.next();
+		String keyword = sc.nextLine();
 		
 		ArrayList<Book> searchList = bc.searchBook(keyword);
-		if(searchList == null) {
+		if(searchList.isEmpty()) {
 			System.out.println("검색 결과가 없습니다.");
-		}
-		for(Book b : searchList) {
-			System.out.println(b);
+		}else {
+			
+			for(Book b : searchList) {
+				System.out.println(b);
+			}
 		}
 	}
 	public void deleteBook() {
@@ -135,14 +126,16 @@ public class BookMenu {
 		System.out.println("===== 도서 삭제 =====");
 		System.out.println("삭제할 도서 명 : ");
 		String title = sc.nextLine();
+		
 		System.err.println("삭제할 저자 명 : ");
 		String author = sc.nextLine();
+		
 		Book remove = bc.deleteBook(title, author);
 		if(remove == null) {
 			System.out.println("삭제할 도서를 찾지 못했습니다.");
-			return;
+		}else {
+			System.out.println("성공적으로 삭제되었습니다.");			
 		}
-		System.out.println("성공적으로 삭제되었습니다.");
 	}
 	public void ascBook() {
 //		bc(BookController)의 ascBook() 메소드 값에 따라
