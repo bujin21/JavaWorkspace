@@ -9,13 +9,7 @@ public class Customer extends Thread{
 	@Override
 	public void run() {
 		for(int i=0; i<10; i++) {
-			try {
-				if(data.getValue() == 0) {
-					String str = null ;					
-				}
-			} catch (EmptyException e) {
-				e.printStackTrace();
-			}
+			data.getValue();			
 			try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
