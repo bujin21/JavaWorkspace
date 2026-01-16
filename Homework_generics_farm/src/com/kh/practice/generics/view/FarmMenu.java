@@ -1,11 +1,9 @@
 package com.kh.practice.generics.view;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Scanner;
 import java.util.Set;
-import java.util.Map.Entry;
-
-import com.kh.chap04_map.part01_hashMap.model.vo.Snack;
 import com.kh.practice.generics.controller.FarmController;
 import com.kh.practice.generics.model.vo.Farm;
 import com.kh.practice.generics.model.vo.Fruit;
@@ -152,7 +150,8 @@ public class FarmMenu {
 		if(choice <1 || choice > 3) {
 			System.out.println("잘못 입력하셨습니다. 다시 입력해주세요.");
 		}
-		if(fc.removeKind(f[choice-1])) {
+		boolean result =fc.removeKind(f[choice-1]); 
+		if(result) {
 			System.out.println("농산물 삭제에 성공하였습니다.");
 		}else {
 			System.out.println("농산물 삭제에 실패하였습니다. 다시 입력해주세요.");
@@ -181,7 +180,9 @@ public class FarmMenu {
 		if(choice <1 || choice > 3) {
 			System.out.println("잘못 입력하셨습니다. 다시 입력해주세요.");
 		}
-		if(fc.changeAmount(f[choice-1], cnt)) {
+		
+		boolean result = fc.changeAmount(f[choice-1], cnt);
+		if(result) {
 			System.out.println("농산물 수량이 수정되었습니다.");
 		}else {
 			System.out.println("농산물 수량 수정에 실패하였습니다. 다시 입력해주세요.");
@@ -194,7 +195,7 @@ public class FarmMenu {
 		HashMap<Farm, Integer> farm =  fc.printFarm();
 		Set<Farm> set = farm.keySet();
 		for(Farm key : set) {
-			System.out.println(key + "("+farm.get(key)+")");
+			System.out.println(key + "("+farm.get(key)+"개)");
 		}
 		
 	}
@@ -216,7 +217,8 @@ public class FarmMenu {
 		if(choice <1 || choice > 3) {
 			System.out.println("잘못 입력하셨습니다. 다시 입력해주세요.");
 		}
-		if(fc.buyFarm(f[choice-1])) {
+		boolean result = fc.buyFarm(f[choice-1]);
+		if(result) {
 			System.out.println("구매에 성공하였습니다");
 		}else {
 			System.out.println("마트에 없는 물건이거나 수량이 없습니다. 다시 입력해주세요.");
@@ -241,7 +243,9 @@ public class FarmMenu {
 		if(choice <1 || choice > 3) {
 			System.out.println("잘못 입력하셨습니다. 다시 입력해주세요.");
 		}
-		if(fc.buyFarm(f[choice-1])) {
+		
+		boolean result =fc.buyFarm(f[choice-1]);
+		if(result) {
 			System.out.println("구매 취소에 성공하였습니다.");
 		}else {
 			System.out.println("구매매 목록에 존재하지 않습니다. 다시 입력해주세요.");
@@ -250,11 +254,11 @@ public class FarmMenu {
 	}
 	public void printBuyFarm() {
 //		fc의 printBuyFarm()의 반환 값을 이용하여 Iterator를 통해 출력
-//		Set<Entry<Farm, Integer>> entrySet = hm.entrySet();
-//		for(Entry<Farm, Integer> entry : entrySet) {
-//			System.out.println("key : "+entry.getKey());
-//			System.out.println("value : "+entry.getValue());
-//		}
+		Iterator<Farm> iter = fc.printBuyFarm().iterator();
+		while(iter.hasNext()) {
+			Farm m3 = iter.next();
+			System.out.println(m3);
+		}
 	}
 	
 }

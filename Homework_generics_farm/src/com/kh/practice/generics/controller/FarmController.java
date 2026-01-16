@@ -12,12 +12,12 @@ public class FarmController {
 	public boolean addNewKind(Farm f, int amount) {
 		// 전달 받은 f가 hMap 안에 key로 존재하지 않을 때
 		// f와 amount를 각각 키와 값으로 저장 후 true 반환, 존재할 경우 false 반환.
+		
 		if(hMap.containsKey(f)) {
 			return false;
-		}else {
-			hMap.put(f, amount);
-			return true;
-		}
+		}	
+		hMap.put(f, amount);
+		return true;
 		
 	}
 	public boolean removeKind(Farm f) {
