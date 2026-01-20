@@ -20,7 +20,7 @@ public class StreamMethods {
 		 * 2) filter : 내부요소 필터링
 		 * 3) map : 데이터 변환
 		 * 4) peek : 중간 확인 메서드
-		 * 5)  : 정렬 메서드
+		 * 5) sort : 정렬 메서드
 		 * ...
 		 * 
 		 * 최종연산 메서드들
